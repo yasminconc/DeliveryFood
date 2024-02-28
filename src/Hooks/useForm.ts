@@ -1,11 +1,14 @@
 
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form'
+
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useData } from "../Context/UserContext";
-import { FormPropsLogin, loginType } from "@/Types/LoginTypes";
-import { FormPropsSignup, SignupType } from "../Types/SignupTypes";
 
+import { FormPropsSignup, SignupType } from "../Types/SignupTypes";
+import { FormPropsLogin, loginType } from '@/Types/LoginTypes';
+
+import { useState } from 'react';
 
   export const formLogiValidate = z.object({
     email: z.string().nonempty("Preencha um valor").email("Email inválido"),
@@ -25,13 +28,16 @@ import { FormPropsSignup, SignupType } from "../Types/SignupTypes";
       getValues,
       getFieldState,
       formState: { errors },
-    } = useForm<FormPropsLogin>({ mode: "onBlur", resolver: zodResolver(formLogiValidate) });
+    } = useForm<FormPropsLogin>({mode: 'onBlur', resolver: zodResolver(formLogiValidate)})
 
     const { userLogin } = useData();
+
+   
 
     const onSubmit = handleSubmit(async (data: loginType) => {
       const { email, password } = data;
       userLogin(email, password);
+     
     });
 
     return {
@@ -55,18 +61,18 @@ import { FormPropsSignup, SignupType } from "../Types/SignupTypes";
       password: z
         .string()
         .nonempty("Preencha um valor")
-        .min(8, "Sua senha deve ter 8 caracteres")
+        .min(6, "Sua senha deve ter 6 dígitos"),
         // eslint-disable-next-line no-useless-escape
-        .regex(/^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/i, {
-          message:
-            "Deve conter um número, uma letra maiúscula, e um caractere especial, ex: ! @ # $ % & *)",
-        }),
+        // .regex(/^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/i, {
+        //   message:
+        //     "Deve conter um número, uma letra maiúscula, e um caractere especial, ex: ! @ # $ % & *)",
+        // }),
 
       confirmPassword: z.string(),
     })
     .refine((fields) => fields.password === fields.confirmPassword, {
       path: ["confirmPassword"],
-      message: "As senha precisam ser iguais",
+      message: "As senhas precisam ser iguais",
     });
 
   export const useSignup = () => {

@@ -10,9 +10,9 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ name, style, placeholder, error = "",  ...props }, ref) => {
     return (
-      <div className="relative h-14">
+      <div className="relative h-[3.3rem]">
         <input
-          className=" peer h-8 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-blue-400"
+          className=" peer text-sm h-7 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-blue-400"
           type="text"
           style={style}
           ref={ref}
@@ -21,7 +21,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           {...props}
         />
         <label
-          className="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-500 peer-placeholder-shown:top-1 peer-focus:-top-3.5 peer-focus:text-slate-600 peer-focus:text-sm">
+          className="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-sm  peer-placeholder-shown:text-slate-500 peer-placeholder-shown:top-1 peer-focus:-top-3.5 peer-focus:text-slate-600 peer-focus:text-sm">
           {placeholder}
         </label>
 
@@ -32,8 +32,3 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 );
 
 export default Input;
-
-// border-gray-500
-// text-gray-900
-// focus:outline-none
-// focus:border-rose-600

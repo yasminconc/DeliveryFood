@@ -2,6 +2,9 @@
 import { UserRequest } from "@/Requests/UserRequest";
 import axios from "axios";
 import React, { ReactNode, createContext, useState } from "react";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+
 
 type GlobalContextProps = {
   userLogin: (email: string, password: string) => void;
@@ -31,6 +34,11 @@ const UserContext: React.FC<GlobalStorageProps> = ({ children }) => {
   const [error, setError] = useState<any | null>(null);
   const [login, setLogin] = useState<boolean | null>(null);
   const [loading, setLoading] = useState<boolean | null>(null);
+  const router = useRouter();
+
+  const handleSucessToast =  () => {
+    toast.success('Usuário logado')
+  }
 
   const userLogin = React.useCallback(async (email: string, password: string) => {
     let req;
@@ -50,6 +58,12 @@ const UserContext: React.FC<GlobalStorageProps> = ({ children }) => {
       window.localStorage.setItem("token", req.data);
 
       setLogin(true);
+
+      handleSucessToast()
+
+      setTimeout(() => {
+        router.push('/signup');
+      }, 1000)
     } catch (err: any) {
       setData(null);
       setError(err.response.data);

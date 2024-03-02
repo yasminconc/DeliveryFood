@@ -3,7 +3,7 @@
 import Image from "next/image";
 import MotoCicle from "@/assets/moto.svg";
 import { useEffect, useState } from "react";
-
+import Loading from '@/assets/loading.png'
 
 const SplashScreen = () => {
   const [imagemCarregada, setImagemCarregada] = useState(false);
@@ -23,7 +23,7 @@ const SplashScreen = () => {
             alt="motocicle"
           />
         ) : (
-          <p>carregando</p>
+           <p>Loading ...</p>
         )}
       </div>
     </div>

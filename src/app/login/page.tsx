@@ -20,7 +20,7 @@ function Login() {
   return (
     <div className="flex flex-col h-screen">
       <div className="flex flex-col items-center pt-14">
-        <Image src={MotoCicle} width={500} height={500} alt="Picture of the author" />
+        <Image priority src={MotoCicle} width={500} height={500} alt="Picture of the author" />
         <div className="flex items-center flex-col relative -top-5 backdrop-blur-md border-2 border-white rounded-md shadow-xl w-80 h-96">
           <div className="flex flex-col gap-4">
             <div className="flex items-center flex-col gap-4 pt-8">
